@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MaSonKuPik Studio — Browser-Based Audio Mastering</title>
+    <meta name="description" content="Private browser-based mastering workspace for MaSonKuPik. Process compatible audio locally and export a finished WAV or MP3 master." />
+    <meta name="robots" content="noindex, follow, noarchive" />
+    <meta property="og:title" content="MaSonKuPik Studio" />
+    <meta property="og:description" content="Browser-based EQ, compression, color, stereo width, limiting and mastered audio export." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://masonkupik.pages.dev/studio/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sometype+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script>
+      (() => {
+        const completionKey = "masonkupik-onboarding-v1";
+        const releaseKey = "masonkupik-onboarding-release";
+        const currentRelease = "premium-guided-tour-v2";
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const forceTour = params.get("tour") === "1";
+          const storedRelease = window.localStorage.getItem(releaseKey);
+          if (forceTour || storedRelease !== currentRelease) {
+            window.localStorage.removeItem(completionKey);
+            window.localStorage.setItem(releaseKey, currentRelease);
+          }
+        } catch {
+          // The mastering studio remains usable when localStorage is unavailable.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
